@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Cleome Chrome Extension</title>
+  <meta name="description" content="Privacy Policy for Cleome - Bookmark Manager with Secret Chrome Extension. Zero external telemetry, 100% local storage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(22, 27, 46, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(99, 102, 241, 0.3);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-light: #818cf8;
+      --green: #10b981;
+      --green-bg: rgba(16, 185, 129, 0.1);
+      --code-bg: rgba(15, 23, 42, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.65;
+      padding: 40px 20px 80px;
+    }
+
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid var(--border-accent);
+      color: var(--accent-light);
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .meta {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+    }
+
+    /* Content Cards */
+    .policy-content {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(99, 102, 241, 0.2);
+      color: var(--accent-light);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    p {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+      font-size: 0.975rem;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 16px;
+    }
+
+    li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 10px;
+      color: #cbd5e1;
+      font-size: 0.975rem;
+    }
+
+    li::before {
+      content: "•";
+      position: absolute;
+      left: 8px;
+      color: var(--accent-light);
+      font-weight: bold;
+    }
+
+    .highlight-box {
+      background: var(--green-bg);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+
+    .highlight-box p {
+      color: #6ee7b7;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    code {
+      background: var(--code-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      color: #e2e8f0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 24px 16px 60px;
+      }
+      h1 {
+        font-size: 1.85rem;
+      }
+      .policy-content {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="logo-badge">
+        <span>🌸</span> Cleome Browser Extension
+      </div>
+      <h1 id="page-title">プライバシーポリシー</h1>
+      <p class="meta" id="page-meta">最終更新日: 2026年9月10日</p>
+
+      <div class="lang-switcher">
+        <button class="lang-btn active" id="btn-ja" onclick="setLanguage('ja')">日本語 (JA)</button>
+        <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">English (EN)</button>
+      </div>
+    </header>
+
+    <main class="policy-content">
+      <!-- Japanese Content -->
+      <div id="content-ja">
+        <div class="section">
+          <h2><span class="section-num">1</span>はじめに</h2>
+          <p>Cleome（以下「本拡張機能」）は、ユーザーの Web ブラウジングにおけるブックマーク管理・整理・暗号化シークレット保護を支援する Google Chrome 向け拡張機能です。</p>
+          <p>本プライバシーポリシーでは、本拡張機能におけるユーザー情報の取り扱いと保護方針について説明します。</p>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">2</span>基本方針：外部データ収集の完全な不実施（ゼロテレメトリ）</h2>
+          <div class="highlight-box">
+            <p>🛡️ Cleome は外部サーバーを一切運用しておらず、ユーザーデータや閲覧履歴の外部送信・追跡は 1 バイトも行われません。</p>
+          </div>
+          <ul>
+            <li><strong>外部サーバーの不使用:</strong> 本拡張機能は、独自のバックエンドサーバー、API、アナリティクスサーバー、追跡用データベース等を一切保持・運用していません。</li>
+            <li><strong>追跡・テレメトリの不実施:</strong> ユーザーの操作ログ、閲覧履歴、個人情報等の収集・外部送信・トラッキングは一切行いません。</li>
+            <li><strong>完全ローカル保存:</strong> すべてのデータは、Chrome のローカルストレージ API (<code>chrome.storage.local</code>) を通じて、お使いの端末（ブラウザ内）にのみ安全に保管されます。</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">3</span>ローカルで取り扱われるデータ</h2>
+          <ul>
+            <li><strong>ブックマークおよびメタデータ:</strong> タイトル、URL、カスタムタグ、メモ・説明文、フォルダ階層、アクセス日時。</li>
+            <li><strong>セキュリティ設定（マスターパスワード）:</strong> シークレットブックマーク機能を利用する際のマスターパスワードは、平文では保存されません。Web Crypto API（ランダムソルトを用いた PBKDF2 / SHA-256）によって端末ローカルで安全にハッシュ化され、ローカルストレージにのみ保持されます。</li>
+            <li><strong>アクセス統計:</strong> アクセス回数および最終アクセス日時は、拡張機能内の頻度ソートやダッシュボード表示機能を提供するためだけに、端末内でのみ記録されます。</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">4</span>要求する権限（Permissions）とその目的</h2>
+          <p>本拡張機能は、最小権限の原則（Least Privilege Principle）に基づき、機能提供に不可欠な権限のみを要求します：</p>
+          <ul>
+            <li><code>storage</code>: ブックマーク、タグ、フォルダ、設定情報をブラウザ内にローカル保存・永続化するために使用します。</li>
+            <li><code>tabs</code> / <code>activeTab</code>: ポップアップからブックマークを追加する際に閲覧中のページの URL・タイトルを取得するため、およびブックマークやダッシュボードを新規タブで開くために使用します。</li>
+            <li><code>scripting</code>: ショートカットキーが押された際、拡張機能インストール前から開かれていた既存タブに対してコマンドパレットのスクリプトを動的に注入するために使用します。</li>
+            <li><code>&lt;all_urls&gt;</code> (Content Scripts): 任意の Web ページ上でショートカット（<code>Ctrl+Shift+K</code> / <code>Cmd+Shift+K</code>）を押した際に、コマンドパレットをオーバーレイ表示するために使用します。独立した Shadow DOM 内で描画され、<strong>閲覧中の Web ページの本文、DOM 情報、個人情報を読み取ったり監視したりすることは一切ありません</strong>。</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">5</span>第三者への提供およびデータの販売</h2>
+          <p>本拡張機能は、ユーザーのデータを第三者、広告事業者、データブローカー等に販売、貸与、譲渡、または共有することは一切ありません。</p>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">6</span>データの保管と削除</h2>
+          <ul>
+            <li>すべてのデータはお使いのブラウザ内にのみ保管されます。</li>
+            <li>ユーザーは拡張機能のエクスポート機能（JSON または HTML 形式）を利用して、いつでもデータをバックアップ・出力できます。</li>
+            <li>Chrome の拡張機能管理画面（<code>chrome://extensions/</code>）から Cleome を削除（アンインストール）することで、保存されたすべてのローカルデータは端末から完全に削除されます。</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">7</span>ポリシーの変更</h2>
+          <p>本プライバシーポリシーは、必要に応じて改定されることがあります。改定された場合は、本リポジトリおよび Chrome Web Store 掲載ページにて速やかに公表されます。</p>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">8</span>お問い合わせ</h2>
+          <p>本プライバシーポリシーに関するご質問やお問い合わせは、本プロジェクトのリポジトリ（GitHub Issues 等）よりご連絡ください。</p>
+        </div>
+      </div>
+
+      <!-- English Content -->
+      <div id="content-en" class="hidden">
+        <div class="section">
+          <h2><span class="section-num">1</span>Introduction</h2>
+          <p>Cleome ("the Extension", "we", "us", or "our") is a browser extension designed to help users manage, organize, and protect their web bookmarks.</p>
+          <p>We are fully committed to protecting your privacy. This Privacy Policy explains how Cleome handles and safeguards your information.</p>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">2</span>Core Principle: Zero External Data Collection</h2>
+          <div class="highlight-box">
+            <p>🛡️ Cleome does not operate any remote servers. Zero bytes of your data or browsing history are collected or transmitted externally.</p>
+          </div>
+          <ul>
+            <li><strong>No External Servers:</strong> Cleome does <strong>NOT</strong> operate any external servers, backend APIs, analytics services, or tracking databases.</li>
+            <li><strong>No Telemetry / No Tracking:</strong> Cleome does <strong>NOT</strong> track, monitor, or collect any user activity, browsing history, or personal data.</li>
+            <li><strong>Local Storage Only:</strong> All data created or managed by Cleome (bookmarks, tags, folders, access frequency, and settings) is stored exclusively on your local device using Chrome's local storage API (<code>chrome.storage.local</code>).</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">3</span>Types of Data Handled Locally</h2>
+          <ul>
+            <li><strong>Bookmarks & Metadata:</strong> Titles, URLs, custom tags, user notes/descriptions, folder hierarchy, and access timestamps.</li>
+            <li><strong>Security Settings:</strong> When using the Secret Bookmark feature, your master password is never stored in plain text. It is securely hashed on your device using Web Crypto API (PBKDF2 with SHA-256 and a random salt) and kept solely in local storage.</li>
+            <li><strong>Access Analytics:</strong> Access count and last-accessed dates are tracked locally solely to provide sorting and dashboard metrics within the extension.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">4</span>Browser Permissions & Purpose</h2>
+          <p>Cleome requests only the minimum necessary permissions in compliance with the Least Privilege Principle:</p>
+          <ul>
+            <li><code>storage</code>: Required to save and persist your bookmarks, tags, folders, and settings locally in your browser.</li>
+            <li><code>tabs</code> &amp; <code>activeTab</code>: Used to retrieve the current webpage's title and URL when you click the extension popup to add a bookmark, and to open bookmarks or the dashboard in new browser tabs.</li>
+            <li><code>scripting</code>: Used to inject the command palette script into existing open tabs when the keyboard shortcut is triggered.</li>
+            <li><code>&lt;all_urls&gt;</code> (Content Scripts): Required solely to display the command palette overlay (<code>Ctrl+Shift+K</code> / <code>Cmd+Shift+K</code>) on top of active webpages in an isolated Shadow DOM. Cleome does <strong>NOT</strong> read, collect, analyze, or modify any content or DOM of the websites you visit.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">5</span>Third-Party Sharing and Sale of Data</h2>
+          <p>Cleome does <strong>NOT</strong> sell, rent, monetize, transfer, or disclose any user data to any third party, advertiser, or data broker under any circumstances.</p>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">6</span>Data Retention and Deletion</h2>
+          <ul>
+            <li>All data remains on your local browser.</li>
+            <li>You can export your data at any time via the extension's export feature (JSON or HTML format).</li>
+            <li>Uninstalling the Cleome extension from <code>chrome://extensions/</code> permanently deletes all associated data stored in <code>chrome.storage.local</code>.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">7</span>Changes to This Privacy Policy</h2>
+          <p>We may update this Privacy Policy from time to time. Any changes will be posted within this repository and updated on the Chrome Web Store listing.</p>
+        </div>
+
+        <div class="section">
+          <h2><span class="section-num">8</span>Contact</h2>
+          <p>If you have any questions or feedback regarding this Privacy Policy, please open an issue in the project's repository.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Cleome Extension. Released under the Apache-2.0 License.</p>
+    </footer>
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      const isJa = lang === 'ja';
+      document.getElementById('content-ja').classList.toggle('hidden', !isJa);
+      document.getElementById('content-en').classList.toggle('hidden', isJa);
+      document.getElementById('btn-ja').classList.toggle('active', isJa);
+      document.getElementById('btn-en').classList.toggle('active', !isJa);
+
+      document.getElementById('page-title').textContent = isJa ? 'プライバシーポリシー' : 'Privacy Policy';
+      document.getElementById('page-meta').textContent = isJa ? '最終更新日: 2026年9月10日' : 'Last updated: September 10, 2026';
+      document.documentElement.lang = lang;
+    }
+  </script>
+</body>
+</html>
