@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Edit3, Trash2, Folder, Clock, Activity } from 'lucide-react';
+import { ExternalLink, Edit3, Trash2, Folder, Clock, Activity, Lock } from 'lucide-react';
 import { BookmarkItem } from '../../types/bookmark';
 
 interface BookmarkListProps {
@@ -43,7 +43,7 @@ export const BookmarkList: React.FC<BookmarkListProps> = ({
         const faviconUrl = `https://www.google.com/s2/favicons?domain=${hostname}&sz=32`;
 
         return (
-          <div key={b.id} className="bookmark-card">
+          <div key={b.id} className={`bookmark-card ${b.isSecret ? 'is-private' : ''}`}>
             <div className="card-top">
               <div className="card-header-left" onClick={() => onOpen(b)}>
                 <img
@@ -55,9 +55,16 @@ export const BookmarkList: React.FC<BookmarkListProps> = ({
                   }}
                 />
                 <div className="card-titles">
-                  <h4 className="card-title" title={b.title}>
-                    {b.title}
-                  </h4>
+                  <div className="card-title-row">
+                    <h4 className="card-title" title={b.title}>
+                      {b.title}
+                    </h4>
+                    {b.isSecret && (
+                      <span className="private-card-badge" title="プライベートブックマーク (シークレットウィンドウで開きます)">
+                        <Lock size={10} /> プライベート
+                      </span>
+                    )}
+                  </div>
                   <span className="card-url" title={b.url}>
                     {hostname}
                   </span>

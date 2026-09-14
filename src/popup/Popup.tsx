@@ -198,7 +198,7 @@ export const Popup: React.FC = () => {
             <div className="secret-toggle-info">
               <div className="secret-title-row">
                 <Lock size={14} className="secret-lock-icon" />
-                <span style={{ fontSize: '12px' }}>シークレットタグ</span>
+                <span style={{ fontSize: '12px' }}>プライベートタグ</span>
               </div>
             </div>
             <button

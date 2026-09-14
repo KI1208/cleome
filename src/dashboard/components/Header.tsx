@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Plus, Download, ShieldAlert } from 'lucide-react';
+import { Search, Plus, Download, ShieldAlert, Unlock } from 'lucide-react';
 
 interface HeaderProps {
   searchQuery: string;
@@ -7,6 +7,8 @@ interface HeaderProps {
   onOpenAddModal: () => void;
   onOpenImportExportModal: () => void;
   hasSecretBookmarks: boolean;
+  isPrivateUnlocked: boolean;
+  onTogglePrivateLock: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -15,6 +17,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenAddModal,
   onOpenImportExportModal,
   hasSecretBookmarks,
+  isPrivateUnlocked,
+  onTogglePrivateLock,
 }) => {
   return (
     <header className="dashboard-header">
@@ -27,11 +31,29 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {hasSecretBookmarks && (
-          <div className="secret-indicator" title="シークレットブックマークはダッシュボード上では安全に非表示になっています">
-            <ShieldAlert size={14} />
-            <span>シークレット保護中</span>
-          </div>
+        {(hasSecretBookmarks || isPrivateUnlocked) && (
+          <button
+            type="button"
+            className={`secret-indicator clickable ${isPrivateUnlocked ? 'unlocked' : ''}`}
+            onClick={onTogglePrivateLock}
+            title={
+              isPrivateUnlocked
+                ? 'クリックしてプライベートブックマークを再ロック'
+                : 'クリックしてパスワードを入力し、プライベートブックマークを解除'
+            }
+          >
+            {isPrivateUnlocked ? (
+              <>
+                <Unlock size={14} />
+                <span>プライベート解除中</span>
+              </>
+            ) : (
+              <>
+                <ShieldAlert size={14} />
+                <span>プライベート保護中</span>
+              </>
+            )}
+          </button>
         )}
       </div>
 

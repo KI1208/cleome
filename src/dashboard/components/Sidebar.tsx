@@ -8,6 +8,7 @@ interface SidebarProps {
   selectedTag: string | null;
   onSelectFolder: (folder: string | null) => void;
   onSelectTag: (tag: string | null) => void;
+  width?: number;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -16,6 +17,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   selectedTag,
   onSelectFolder,
   onSelectTag,
+  width,
 }) => {
   // Compute folder list and counts
   const folderCounts = React.useMemo(() => {
@@ -49,7 +51,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
   }, [bookmarks]);
 
   return (
-    <aside className="dashboard-sidebar">
+    <aside
+      className="dashboard-sidebar"
+      style={width ? { width: `${width}px` } : undefined}
+    >
       {/* Overview / All */}
       <div className="sidebar-section">
         <button

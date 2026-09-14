@@ -36,10 +36,10 @@ Cleome does **NOT** sell, rent, monetize, transfer, or disclose any user data to
 - Uninstalling the Cleome extension from `chrome://extensions/` permanently deletes all associated data stored in `chrome.storage.local`.
 
 ### 7. Changes to This Privacy Policy
-We may update this Privacy Policy from time to time. Any changes will be posted within this repository and updated on the Chrome Web Store listing.
+We may update this Privacy Policy from time to time. Any changes will be posted on this website and updated on the Chrome Web Store listing.
 
 ### 8. Contact
-If you have any questions or feedback regarding this Privacy Policy, please open an issue in the project's repository.
+If you have any questions or feedback regarding this Privacy Policy, please contact us via the Chrome Web Store support tab or through our official website contact channels.
 
 ---
 
@@ -55,7 +55,7 @@ Cleome（以下「本拡張機能」）は、ユーザーのWebブラウジン�
 
 ### 3. ローカルで取り扱われるデータ
 - **ブックマークおよびメタデータ**: タイトル、URL、カスタムタグ、メモ・説明文、フォルダ階層、アクセス日時。
-- **セキュリティ設定**: シークレットブックマーク機能を利用する際のマスターパスワードは、平文では保存されません。Web Crypto API（ランダムソルトを用いたPBKDF2 / SHA-256）によって端末ローカルで安全にハッシュ化され、ローカルストレージにのみ保持されます。
+- **セキュリティ設定**: プライベートブックマーク機能を利用する際のマスターパスワードは、平文では保存されません。Web Crypto API（ランダムソルトを用いたPBKDF2 / SHA-256）によって端末ローカルで安全にハッシュ化され、ローカルストレージにのみ保持されます。
 - **アクセス統計**: アクセス回数および最終アクセス日時は、拡張機能内の並び替えやダッシュボード表示機能を提供するためだけに、ローカル環境でのみ記録されます。
 
 ### 4. 要求する権限（Permissions）とその目的
@@ -74,7 +74,7 @@ Cleome（以下「本拡張機能」）は、ユーザーのWebブラウジン�
 - Chromeの拡張機能管理画面（`chrome://extensions/`）からCleomeを削除（アンインストール）することで、保存されたすべてのローカルデータは端末から完全に削除されます。
 
 ### 7. ポリシーの変更
-本プライバシーポリシーは、必要に応じて改定されることがあります。改定された場合は、本リポジトリおよびChrome Web Store掲載ページにて速やかに公表されます。
+本プライバシーポリシーは、必要に応じて改定されることがあります。改定された場合は、本ウェブサイトおよび Chrome Web Store 掲載ページにて速やかに公表されます。
 
 ### 8. お問い合わせ
-本プライバシーポリシーに関するご質問やお問い合わせは、本プロジェクトのリポジトリ（GitHub Issues等）よりご連絡ください。
+本プライバシーポリシーに関するご質問やお問い合わせは、Chrome Web Store のサポートタブまたは本ウェブサイトのお問い合わせ窓口よりご連絡ください。

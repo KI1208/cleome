@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { StatsOverview } from './components/StatsOverview';
 import { BookmarkList } from './components/BookmarkList';
 import { BookmarkModal } from './components/BookmarkModal';
 import { PasswordModal } from './components/PasswordModal';
+import { UnlockModal } from './components/UnlockModal';
 import { ImportExportModal } from './components/ImportExportModal';
 import { BookmarkItem } from '../types/bookmark';
 import {
@@ -24,6 +25,26 @@ export const App: React.FC = () => {
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
+  // Private unlock state
+  const [isPrivateUnlocked, setIsPrivateUnlocked] = useState(false);
+  const [isUnlockModalOpen, setIsUnlockModalOpen] = useState(false);
+
+  // Sidebar resizable width state
+  const [sidebarWidth, setSidebarWidth] = useState<number>(() => {
+    const saved = localStorage.getItem('cleome_sidebar_width');
+    if (saved) {
+      const parsed = parseInt(saved, 10);
+      if (!isNaN(parsed) && parsed >= 180 && parsed <= 600) {
+        return parsed;
+      }
+    }
+    return 260;
+  });
+  const [isResizing, setIsResizing] = useState(false);
+  const contentAreaRef = useRef<HTMLDivElement>(null);
+  const sidebarWidthRef = useRef(sidebarWidth);
+  sidebarWidthRef.current = sidebarWidth;
+
   // Modals state
   const [isBookmarkModalOpen, setIsBookmarkModalOpen] = useState(false);
   const [editingBookmark, setEditingBookmark] = useState<BookmarkItem | null>(null);
@@ -31,20 +52,62 @@ export const App: React.FC = () => {
   const [isImportExportModalOpen, setIsImportExportModalOpen] = useState(false);
   const [isPasswordConfigured, setIsPasswordConfigured] = useState(false);
 
-  // Load data
+  // Load data (shows all bookmarks when private unlocked, otherwise visible only)
   const loadData = useCallback(async () => {
-    const visible = await getVisibleBookmarks();
     const all = await getAllBookmarks();
-    setBookmarks(visible);
+    const visible = await getVisibleBookmarks();
+    setBookmarks(isPrivateUnlocked ? all : visible);
     setHasSecretBookmarks(all.some((b) => b.isSecret));
 
     const pwSet = await isMasterPasswordSet();
     setIsPasswordConfigured(pwSet);
-  }, []);
+  }, [isPrivateUnlocked]);
 
   useEffect(() => {
     loadData();
   }, [loadData]);
+
+  // Handle resizing side effects
+  useEffect(() => {
+    if (!isResizing) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!contentAreaRef.current) return;
+      const left = contentAreaRef.current.getBoundingClientRect().left;
+      const newWidth = Math.min(Math.max(Math.round(e.clientX - left), 180), 600);
+      setSidebarWidth(newWidth);
+    };
+
+    const handleMouseUp = () => {
+      setIsResizing(false);
+      localStorage.setItem('cleome_sidebar_width', String(sidebarWidthRef.current));
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizing]);
+
+  const handleDoubleClickResizer = () => {
+    setSidebarWidth(260);
+    localStorage.setItem('cleome_sidebar_width', '260');
+  };
+
+  const handleTogglePrivateLock = () => {
+    if (isPrivateUnlocked) {
+      setIsPrivateUnlocked(false);
+    } else {
+      if (isPasswordConfigured) {
+        setIsUnlockModalOpen(true);
+      } else {
+        setIsPasswordModalOpen(true);
+      }
+    }
+  };
 
   // Existing unique folders list for auto-completion
   const existingFolders = useMemo(() => {
@@ -157,15 +220,31 @@ export const App: React.FC = () => {
         }}
         onOpenImportExportModal={() => setIsImportExportModalOpen(true)}
         hasSecretBookmarks={hasSecretBookmarks}
+        isPrivateUnlocked={isPrivateUnlocked}
+        onTogglePrivateLock={handleTogglePrivateLock}
       />
 
-      <div className="dashboard-content-area">
+      <div
+        ref={contentAreaRef}
+        className={`dashboard-content-area ${isResizing ? 'is-resizing' : ''}`}
+      >
         <Sidebar
           bookmarks={bookmarks}
           selectedFolder={selectedFolder}
           selectedTag={selectedTag}
           onSelectFolder={handleSelectFolder}
           onSelectTag={handleSelectTag}
+          width={sidebarWidth}
+        />
+
+        <div
+          className={`dashboard-resizer ${isResizing ? 'is-active' : ''}`}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            setIsResizing(true);
+          }}
+          onDoubleClick={handleDoubleClickResizer}
+          title="境界線をドラッグして幅を変更 (ダブルクリックで初期幅に戻す)"
         />
 
         <main className="dashboard-main">
@@ -236,6 +315,13 @@ export const App: React.FC = () => {
           setIsPasswordConfigured(true);
           // Re-open or resume bookmark modal
         }}
+      />
+
+      {/* Unlock Password Modal */}
+      <UnlockModal
+        isOpen={isUnlockModalOpen}
+        onClose={() => setIsUnlockModalOpen(false)}
+        onSuccess={() => setIsPrivateUnlocked(true)}
       />
 
       {/* Import/Export Modal */}

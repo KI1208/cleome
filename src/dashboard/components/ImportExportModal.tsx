@@ -47,7 +47,7 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
       downloadFile(filename, html, 'text/html');
       setMessage({
         type: 'success',
-        text: 'Chrome標準形式 (HTML) でエクスポートしました (タグ・説明・シークレットはオミットされています)',
+        text: 'Chrome標準形式 (HTML) でエクスポートしました (タグ・説明・プライベート情報はオミットされています)',
       });
     } catch (err) {
       setMessage({ type: 'error', text: 'エクスポートに失敗しました' });
@@ -160,7 +160,7 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
                   <h4>Chrome 標準形式 (.html)</h4>
                   <p>
                     Chrome、Firefox、Safari等にそのまま取り込めるNetscape形式です。
-                    要件に基づき、タグ・説明・シークレット情報はオミットされます。
+                    要件に基づき、タグ・説明・プライベート情報はオミットされます。
                   </p>
                   <button className="btn btn-secondary" onClick={handleExportHtml}>
                     <Download size={16} /> HTMLで書き出す

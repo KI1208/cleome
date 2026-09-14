@@ -74,8 +74,8 @@ export const PasswordModal: React.FC<PasswordModalProps> = ({ isOpen, onClose, o
         <div className="password-intro">
           <ShieldCheck size={20} className="shield-icon" />
           <p>
-            シークレットタグが付与されたブックマークを保護するためのパスワードを設定します。
-            コマンドパレットからシークレットブックマークを閲覧・起動する際に必要となります。
+            プライベートタグが付与されたブックマークを保護するためのパスワードを設定します。
+            ダッシュボードやコマンドパレットからプライベートブックマークを閲覧・起動する際に必要となります。
           </p>
         </div>
 

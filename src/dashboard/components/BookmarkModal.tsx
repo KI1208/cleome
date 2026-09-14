@@ -210,24 +210,24 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
             />
           </div>
 
-          {/* Secret Tag Toggle */}
+          {/* Private Tag Toggle */}
           <div className={`secret-toggle-box ${isSecret ? 'active' : ''}`}>
             <div className="secret-toggle-info">
               <div className="secret-title-row">
                 <Lock size={16} className="secret-lock-icon" />
-                <strong>特別なタグ: シークレット</strong>
-                {isSecret && <span className="secret-badge">シークレット有効</span>}
+                <strong>特別なタグ: プライベート</strong>
+                {isSecret && <span className="secret-badge">プライベート有効</span>}
               </div>
               <p className="secret-desc">
-                シークレットタグを付与すると、ダッシュボードや通常フォルダから完全に非表示になります。
-                閲覧・起動にはコマンドパレットからパスワード認証が必要になります。
+                プライベートタグを付与すると、保護中はダッシュボードや通常フォルダから完全に非表示になります。
+                閲覧・起動にはダッシュボードまたはコマンドパレットからパスワード認証が必要になります。
               </p>
             </div>
             <button
               type="button"
               className={`toggle-switch ${isSecret ? 'on' : ''}`}
               onClick={handleToggleSecret}
-              aria-label="シークレットタグの切り替え"
+              aria-label="プライベートタグの切り替え"
             >
               <span className="toggle-handle" />
             </button>

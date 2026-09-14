@@ -193,14 +193,14 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ onClose }) => {
             className="cleome-palette-input"
             placeholder={
               isSecretUnlocked
-                ? 'シークレット含むすべてのブックマークを検索...'
+                ? 'プライベート含むすべてのブックマークを検索...'
                 : 'ブックマークを検索... (タイトル、説明、タグ)'
             }
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
-              // Quick trigger: typing /secret opens password prompt
-              if (e.target.value.startsWith('/secret') && !isSecretUnlocked) {
+              // Quick trigger: typing /private or /secret opens password prompt
+              if ((e.target.value.startsWith('/private') || e.target.value.startsWith('/secret')) && !isSecretUnlocked) {
                 setShowPasswordInput(true);
                 setTimeout(() => passwordInputRef.current?.focus(), 50);
               }
@@ -222,18 +222,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ onClose }) => {
                   }
                 }
               }}
-              title={isSecretUnlocked ? 'クリックしてシークレットを再ロック' : 'パスワードでシークレットを解除'}
+              title={isSecretUnlocked ? 'クリックしてプライベートを再ロック' : 'パスワードでプライベートを解除'}
             >
               {isSecretUnlocked ? (
                 <>
                   <span className="cleome-secret-indicator-dot" />
                   <Unlock size={14} />
-                  <span>シークレット解除中</span>
+                  <span>プライベート解除中</span>
                 </>
               ) : (
                 <>
                   <Lock size={14} />
-                  <span>シークレット解除</span>
+                  <span>プライベート解除</span>
                 </>
               )}
             </button>
@@ -247,7 +247,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ onClose }) => {
             <input
               ref={passwordInputRef}
               type="password"
-              placeholder="シークレット解除パスワードを入力"
+              placeholder="プライベート解除パスワードを入力"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -325,7 +325,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ onClose }) => {
                               className="cleome-secret-tag-badge"
                               title="Chromeのシークレットウィンドウで開きます"
                             >
-                              🕶️ シークレット
+                              🕶️ プライベート
                             </span>
                           )}
                         </div>
